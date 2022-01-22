@@ -1,0 +1,25 @@
+<ng-container>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ label }}</mat-label>
+    <input
+      type="text"
+      placeholder="Ciudad de origen"
+      matInput
+      [formControl]="control"
+      [matAutocomplete]="auto"
+    />
+    <mat-icon matSuffix>{{ icon }}</mat-icon>
+    <mat-autocomplete
+      autoActiveFirstOption
+      #auto="matAutocomplete"
+      (optionSelected)="selectedOption($event)"
+    >
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option"
+      >
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</ng-container>
