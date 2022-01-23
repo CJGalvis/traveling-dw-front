@@ -91,7 +91,12 @@
         </div>
       </div>
       <div fxLayout="row" fxLayoutAlign="end">
-        <button mat-raised-button color="primary" type="submit">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="disabledButton"
+        >
           Buscar vuelos
         </button>
       </div>

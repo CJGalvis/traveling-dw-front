@@ -68,4 +68,8 @@ export class ReservationFlightComponent implements OnInit {
       }
     });
   }
+
+  get disabledButton(): boolean {
+    return this.reservationForm.invalid;
+  }
 }
