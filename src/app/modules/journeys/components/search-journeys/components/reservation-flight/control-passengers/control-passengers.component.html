@@ -1,0 +1,28 @@
+<div fxLayout="column" fxLayoutGap="15px">
+  <app-add-passengers-control
+    titleControl="Adultos"
+    subtitleControl="Igual o mayor de 12 años"
+    [count]="countAdult"
+    [showTooltip]="true"
+    (handlerCount)="countAdult = $event"
+  >
+  </app-add-passengers-control>
+
+  <app-add-passengers-control
+    titleControl="Niños"
+    subtitleControl="2 - 11 años"
+    [count]="countChild"
+    (handlerCount)="countChild = $event"
+  >
+  </app-add-passengers-control>
+
+  <app-add-passengers-control
+    titleControl="Bebés"
+    subtitleControl="Menores de 2 años"
+    [count]="countBabies"
+    (handlerCount)="countBabies = $event"
+  >
+  </app-add-passengers-control>
+
+  <button mat-raised-button color="primary" (click)="setValuesPassengers()">Aplicar</button>
+</div>

@@ -1,0 +1,13 @@
+<mat-form-field appearance="fill">
+  <mat-label>Pasajeros</mat-label>
+  <input
+    type="text"
+    matInput
+    [formControl]="control"
+    readonly
+    (click)="openDialogSelect()"
+  />
+  <mat-icon matSuffix (click)="openDialogSelect()">
+    supervised_user_circle
+  </mat-icon>
+</mat-form-field>

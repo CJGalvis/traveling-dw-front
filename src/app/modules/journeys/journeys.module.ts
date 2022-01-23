@@ -11,7 +11,12 @@ import { ManageReservationComponent } from "./components/search-journeys/compone
 import { CheckInComponent } from "./components/search-journeys/components/check-in/check-in.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CustomAutocompleteComponent } from "./components/search-journeys/components/reservation-flight/custom-autocomplete/custom-autocomplete.component";
-import { CustomCalendarComponent } from './components/search-journeys/components/reservation-flight/custom-calendar/custom-calendar.component';
+import { CustomCalendarComponent } from "./components/search-journeys/components/reservation-flight/custom-calendar/custom-calendar.component";
+import { SelectPassengersComponent } from "./components/search-journeys/components/reservation-flight/select-passengers/select-passengers.component";
+import { ControlPassengersComponent } from "./components/search-journeys/components/reservation-flight/control-passengers/control-passengers.component";
+import { AddPassengersControlComponent } from './components/search-journeys/components/reservation-flight/add-passengers-control/add-passengers-control.component';
+import { ItemJourneyComponent } from './components/results-journeys/components/item-journey/item-journey.component';
+import { FiltersJourneysComponent } from './components/results-journeys/components/filters-journeys/filters-journeys.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,11 @@ import { CustomCalendarComponent } from './components/search-journeys/components
     CheckInComponent,
     CustomAutocompleteComponent,
     CustomCalendarComponent,
+    SelectPassengersComponent,
+    ControlPassengersComponent,
+    AddPassengersControlComponent,
+    ItemJourneyComponent,
+    FiltersJourneysComponent,
   ],
   imports: [
     CommonModule,
@@ -32,5 +42,6 @@ import { CustomCalendarComponent } from './components/search-journeys/components
     FormsModule,
     ReactiveFormsModule,
   ],
+  entryComponents: [ControlPassengersComponent],
 })
 export class JourneysModule {}

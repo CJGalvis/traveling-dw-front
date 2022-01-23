@@ -1,0 +1,25 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="column">
+    <span class="font-primary">{{ titleControl }}</span>
+    <span class="font-secundary">{{ subtitleControl }}</span>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+    <div [matTooltip]="tooltipDisabled" matTooltipPosition="above">
+      <button
+      mat-icon-button
+      color="primary"
+      [disabled]="disableButton"
+      (click)="subtract()"
+    >
+      <mat-icon>remove_circle_outline</mat-icon>
+    </button>
+    </div>
+
+    <span class="font-primary">{{ count }}</span>
+
+    <button mat-icon-button color="primary" (click)="add()">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </div>
+</div>

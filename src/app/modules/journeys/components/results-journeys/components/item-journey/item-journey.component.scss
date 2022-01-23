@@ -1,0 +1,48 @@
+.separator {
+  height: 2px;
+  background-color: cadetblue;
+  width: 20%;
+}
+
+.font-date {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.font-city {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.font-default {
+  font-size: 18px;
+}
+
+.font-special {
+  color: cadetblue;
+}
+
+.duracion {
+  font-size: 15px;
+}
+
+.stop {
+  font-size: 12px;
+}
+
+.font-price {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.item-journey {
+  padding: 30px;
+}
+
+.item-card:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0px 12px 20px -15px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0px 12px 20px -15px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 12px 20px -15px rgba(0, 0, 0, 0.8);
+  background-color: rgba(95, 158, 160, 0.24);
+}

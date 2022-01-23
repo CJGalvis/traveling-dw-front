@@ -1,39 +1,100 @@
-<div fxLayout="column" fxLayoutGap="25px">
-  <mat-radio-group>
-    <mat-radio-button value="1">Ida y vuelta</mat-radio-button>
-    <mat-radio-button value="2">Solo ida</mat-radio-button>
+<div fxLayout="column" fxLayoutGap="15px">
+  <mat-radio-group [formControl]="isReturnControl">
+    <mat-radio-button [value]="true">Ida y vuelta</mat-radio-button>
+    <mat-radio-button [value]="false">Solo ida</mat-radio-button>
   </mat-radio-group>
 
-  <div class="container-form" >
-    <div fxLayout="column" fxLayoutGap="15px">
-      <div fxLayout="row" fxLayoutAlign="space-between">
-        <app-custom-autocomplete
-          label="Desde"
-          icon="flight_takeoff"
-          [formControl]="originControl"
-          [options]="options"
-        ></app-custom-autocomplete>
+  <div class="container-form">
+    <form [formGroup]="reservationForm" (ngSubmit)="searchJourneys()">
+      <div class="container-controls" fxLayout="column" fxLayoutGap="15px">
+        <div
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayout.sm="column"
+          fxLayout.md="column"
+          fxLayoutGap="15px"
+        >
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title> ¿A dónde viajas? </mat-card-title>
+            </mat-card-header>
 
-        <app-custom-autocomplete
-          label="Hacia"
-          icon="flight_land"
-          [formControl]="destinationControl"
-          [options]="options"
-        ></app-custom-autocomplete>
+            <mat-card-content>
+              <div
+                fxLayout="row"
+                fxLayout.xs="column"
+                fxLayout.sm="column"
+                fxLayout.md="column"
+                fxLayoutGap="15px"
+              >
+                <app-custom-autocomplete
+                  label="Desde"
+                  icon="flight_takeoff"
+                  controlName="origin"
+                  [parentForm]="reservationForm"
+                  [options]="options"
+                ></app-custom-autocomplete>
 
-        <app-custom-calendar label="Salida"></app-custom-calendar>
+                <app-custom-autocomplete
+                  label="Hacia"
+                  icon="flight_land"
+                  controlName="destination"
+                  [parentForm]="reservationForm"
+                  [options]="options"
+                ></app-custom-autocomplete>
+              </div>
+            </mat-card-content>
+          </mat-card>
 
-        <app-custom-calendar label="Vuelta"></app-custom-calendar>
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title> ¿Cuándo viajas? </mat-card-title>
+            </mat-card-header>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Pasajeros</mat-label>
-          <input type="text" matInput  [formControl]="destinationControl"/>
-          <mat-icon matSuffix>supervised_user_circle</mat-icon>
-        </mat-form-field>
+            <mat-card-content>
+              <div
+                fxLayout="row"
+                fxLayout.xs="column"
+                fxLayout.sm="column"
+                fxLayout.md="column"
+                fxLayoutGap="15px"
+              >
+                <app-custom-calendar
+                  label="Salida"
+                  controlName="departureDate"
+                  [parentForm]="reservationForm"
+                ></app-custom-calendar>
+
+                <app-custom-calendar
+                  *ngIf="isReturn"
+                  label="Vuelta"
+                  controlName="returnDate"
+                  [parentForm]="reservationForm"
+                ></app-custom-calendar>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title> ¿Quién viaja? </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+              <app-select-passengers
+                controlName="passengers"
+                [parentForm]="reservationForm"
+                (eventSelected)="getValuesPassengers($event)"
+              ></app-select-passengers>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="end">
-      <button mat-raised-button color="primary">Buscar vuelos</button>
-    </div>
+      <div fxLayout="row" fxLayoutAlign="end">
+        <button mat-raised-button color="primary" type="submit">
+          Buscar vuelos
+        </button>
+      </div>
+    </form>
   </div>
 </div>

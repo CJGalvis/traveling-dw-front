@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title> Tu busqueda </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="filtersJourneys">
+      <div fxLayout="row" fxLayoutAlign="space-around">
+        <mat-form-field appearance="fill">
+          <mat-label>Desde</mat-label>
+          <input matInput readonly formControlName="origin" />
+          <mat-icon matSuffix>flight_takeoff</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hacia</mat-label>
+          <input matInput readonly formControlName="destination" />
+          <mat-icon matSuffix>flight_land</mat-icon>
+        </mat-form-field>
+
+        <app-custom-calendar
+          label="Salida"
+          controlName="departureDate"
+          [parentForm]="filtersJourneys"
+          [readonly]="true"
+        ></app-custom-calendar>
+
+        <app-custom-calendar
+          *ngIf="filters?.isReturn"
+          label="Vuelta"
+          controlName="returnDate"
+          [parentForm]="filtersJourneys"
+          [readonly]="true"
+        ></app-custom-calendar>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Pasajeros</mat-label>
+          <input matInput readonly formControlName="passengers" />
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
