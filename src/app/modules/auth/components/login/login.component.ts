@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     };
     this.authService.login(data).subscribe(
       (login: any) => {
+        this.authService.setToken(login.token);
         this.store.dispatch(authActions.setToken({ token: login.token }));
         if (this.url) {
           this.router.navigate([this.url]);

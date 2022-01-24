@@ -12,6 +12,14 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {}
 
+  setToken(token: string) {
+    localStorage.setItem("token", token);
+  }
+
+  getToken() {
+    return localStorage.getItem("token");
+  }
+
   register(data: User): Observable<any> {
     const url = `${this.API_URL}/auth/register`;
     return this.httpClient.post(url, data);
