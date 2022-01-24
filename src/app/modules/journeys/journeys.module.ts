@@ -16,6 +16,7 @@ import { ItemJourneyComponent } from './components/results-journeys/components/i
 import { FiltersJourneysComponent } from './components/results-journeys/components/filters-journeys/filters-journeys.component';
 import { ItemJourneysSelectedComponent } from './components/results-journeys/components/item-journeys-selected/item-journeys-selected.component';
 import { CreateReservationComponent } from './components/create-reservation/create-reservation.component';
+import { ManageReservationComponent } from './components/search-journeys/components/manage-reservation/manage-reservation.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CreateReservationComponent } from './components/create-reservation/crea
     FiltersJourneysComponent,
     ItemJourneysSelectedComponent,
     CreateReservationComponent,
+    ManageReservationComponent,
   ],
   imports: [
     CommonModule,
