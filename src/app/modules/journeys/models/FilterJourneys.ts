@@ -4,5 +4,5 @@ export interface FilterJourneys {
   departureDate?: Date;
   returnDate?: Date;
   isReturn?: boolean;
-  passengers?: string
+  passengers?: string;
 }

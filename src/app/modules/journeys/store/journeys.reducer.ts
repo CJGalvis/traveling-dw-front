@@ -6,7 +6,9 @@ import {
   clearFilters,
   setJourneysItems,
   setJourneysSelected,
-  enabledPay
+  enabledPay,
+  clearJourneysItems,
+  clearJourneysSelected,
 } from "./journeys.actions";
 
 export interface State {
@@ -18,7 +20,7 @@ export interface State {
 export const initialState: State = {
   filters: null,
   journeysItems: [],
-  enablePay: false
+  enablePay: false,
 };
 
 const _journeysReducer = createReducer(
@@ -35,12 +37,16 @@ const _journeysReducer = createReducer(
     journeysItems: [...journeysItems],
   })),
 
+  on(clearJourneysItems, (state) => ({ ...state, journeysItems: [] })),
+
   on(setJourneysSelected, (state, { journeysSelected }) => ({
     ...state,
     journeysSelected: [...journeysSelected],
   })),
 
-  on(enabledPay, (state) => ({ ...state, enablePay: true })),
+  on(clearJourneysSelected, (state) => ({ ...state, journeysSelected: [] })),
+
+  on(enabledPay, (state) => ({ ...state, enablePay: true }))
 );
 
 export function journeysReducer(state, action) {

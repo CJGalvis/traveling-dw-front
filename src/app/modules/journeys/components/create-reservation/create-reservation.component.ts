@@ -5,6 +5,8 @@ import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
 import { AppState } from "src/app/core/store/app.reducer";
 import { JourneysItems } from "../../models/JourneysItems";
+import { JourneysService } from "../../services/journeys.service";
+import * as journeysActions from "../../store/journeys.actions";
 
 @Component({
   selector: "app-create-reservation",
@@ -22,7 +24,11 @@ export class CreateReservationComponent implements OnInit, OnDestroy {
   public journeysSelected: Array<JourneysItems> = [];
   private subscriptionStore: Subscription;
 
-  constructor(private store: Store<AppState>, private router: Router) {}
+  constructor(
+    private store: Store<AppState>,
+    private router: Router,
+    private journeysService: JourneysService
+  ) {}
 
   ngOnDestroy(): void {
     this.subscriptionStore.unsubscribe();
@@ -34,6 +40,8 @@ export class CreateReservationComponent implements OnInit, OnDestroy {
       .subscribe(({ journeysSelected }: any) => {
         if (journeysSelected) {
           this.journeysSelected = journeysSelected;
+        } else {
+          this.router.navigate(["/journeys/search"]);
         }
       });
   }
@@ -50,6 +58,23 @@ export class CreateReservationComponent implements OnInit, OnDestroy {
 
   saveReservation() {
     if (this.reservationForm.invalid) return;
+    const reservation = {
+      journeys: this.journeysSelected,
+      name: this.reservationForm.get("name").value,
+      lastname: this.reservationForm.get("lastname").value,
+      identificationType: this.reservationForm.get("identificationType").value,
+      identificationNumber: this.reservationForm.get("identificationNumber")
+        .value,
+    };
 
+    this.journeysService.createReservation(reservation).subscribe(
+      (response: any) => {
+        this.store.dispatch(journeysActions.clearFilters());
+        this.store.dispatch(journeysActions.clearJourneysItems());
+        this.store.dispatch(journeysActions.clearJourneysSelected());
+        this.router.navigate(["/journeys/search"]);
+      },
+      (error) => {}
+    );
   }
 }

@@ -5,8 +5,14 @@
     <div fxLayout="row" fxLayoutGap="15px">
       <mat-card fxFlex="70" class="mat-elevation-z4">
         <mat-card-header fxLayout="row" fxLayoutAlign="space-between start">
-          <mat-card-title>
-            {{ getLabel() }} de {{ filterSelected?.origin }} a
+          <mat-card-title *ngIf="this.filterSelected.isReturn">
+            Salida de {{ filterSelected?.origin }} a
+            {{ filterSelected?.destination }} -
+            {{ filterSelected?.departureDate | date: "MMM d, y" }}
+          </mat-card-title>
+
+          <mat-card-title *ngIf="!this.filterSelected.isReturn">
+            Regreso de {{ filterSelected?.origin }} a
             {{ filterSelected?.destination }} -
             {{ filterSelected?.departureDate | date: "MMM d, y" }}
           </mat-card-title>

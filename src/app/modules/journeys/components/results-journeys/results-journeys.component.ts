@@ -15,7 +15,7 @@ import { JourneysItems } from "../../models/JourneysItems";
 export class ResultsJourneysComponent implements OnInit, OnDestroy {
   public journeys: Array<JourneysItems> = [];
   public journeysSelected: Array<JourneysItems> = [];
-  public filterSelected: FilterJourneys;
+  public filterSelected: FilterJourneys = {};
   private onReturn: boolean;
 
   constructor(
@@ -33,7 +33,9 @@ export class ResultsJourneysComponent implements OnInit, OnDestroy {
   }
 
   getJourneyForFilter(params: FilterJourneys) {
-    this.filterSelected = params;
+    this.filterSelected = { ...params };
+    this.filterSelected.isReturn = !!!this.filterSelected.isReturn;
+    console.log(this.filterSelected.isReturn);
     this.store.dispatch(journeysActions.setFilters({ filters: { ...params } }));
     this.journeysService.getJourneys(params).subscribe((response: any) => {
       this.journeys = response.items;

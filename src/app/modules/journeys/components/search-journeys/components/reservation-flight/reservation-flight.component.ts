@@ -35,10 +35,13 @@ export class ReservationFlightComponent implements OnInit {
       origin: this.reservationForm.get("origin").value,
       destination: this.reservationForm.get("destination").value,
       departureDate: this.reservationForm.get("departureDate").value,
-      returnDate: this.reservationForm.get("returnDate").value,
       isReturn: this.isReturn,
       passengers: this.reservationForm.get("passengers").value,
     };
+
+    if (this.isReturn) {
+      queryParams.returnDate = this.reservationForm.get("returnDate").value;
+    }
 
     this.router.navigate([
       `/journeys/results/${queryParams.origin}/${queryParams.destination}/${queryParams.departureDate}/${queryParams.returnDate}/${queryParams.isReturn}/${queryParams.passengers}`,
