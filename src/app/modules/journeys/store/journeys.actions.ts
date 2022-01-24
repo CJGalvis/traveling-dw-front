@@ -13,3 +13,10 @@ export const setJourneysItems = createAction(
   "[Journeys] setJourneysItems",
   props<{ journeysItems: Array<JourneysItems> }>()
 );
+
+export const setJourneysSelected = createAction(
+  "[Journeys] setJourneysSelected",
+  props<{ journeysSelected: Array<JourneysItems> }>()
+);
+
+export const enabledPay = createAction("[Journeys] enabledPay");

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageReservationComponent } from './manage-reservation.component';
+import { CreateReservationComponent } from './create-reservation.component';
 
-describe('ManageReservationComponent', () => {
-  let component: ManageReservationComponent;
-  let fixture: ComponentFixture<ManageReservationComponent>;
+describe('CreateReservationComponent', () => {
+  let component: CreateReservationComponent;
+  let fixture: ComponentFixture<CreateReservationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ManageReservationComponent ]
+      declarations: [ CreateReservationComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManageReservationComponent);
+    fixture = TestBed.createComponent(CreateReservationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

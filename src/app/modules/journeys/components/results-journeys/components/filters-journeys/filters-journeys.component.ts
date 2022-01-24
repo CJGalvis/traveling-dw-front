@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormGroup, FormControl } from "@angular/forms";
+import { Store } from "@ngrx/store";
+import { Subscription } from "rxjs";
+import { AppState } from "src/app/core/store/app.reducer";
 import { FilterJourneys } from "src/app/modules/journeys/models/FilterJourneys";
 
 @Component({
@@ -7,11 +10,12 @@ import { FilterJourneys } from "src/app/modules/journeys/models/FilterJourneys";
   templateUrl: "./filters-journeys.component.html",
   styleUrls: ["./filters-journeys.component.scss"],
 })
-export class FiltersJourneysComponent implements OnInit {
-  @Input() isReturn: boolean;
-  @Input() filters: FilterJourneys = {};
+export class FiltersJourneysComponent implements OnInit, OnDestroy {
+  public filters: FilterJourneys;
 
-  public filtersJourneys = new FormGroup({
+  private subscriptionStore: Subscription;
+
+  public filtersJourneysForm = new FormGroup({
     origin: new FormControl(),
     destination: new FormControl(),
     departureDate: new FormControl(),
@@ -19,9 +23,17 @@ export class FiltersJourneysComponent implements OnInit {
     passengers: new FormControl(),
   });
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
+  ngOnDestroy(): void {
+    this.subscriptionStore.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.filtersJourneys.patchValue(this.filters);
+    this.subscriptionStore = this.store
+      .select("journeys")
+      .subscribe(({ filters }: any) => {
+        this.filters = filters;
+        this.filtersJourneysForm.patchValue({ ...this.filters });
+      });
   }
 }

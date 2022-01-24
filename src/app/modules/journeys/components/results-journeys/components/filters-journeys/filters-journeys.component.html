@@ -4,34 +4,53 @@
   </mat-card-header>
 
   <mat-card-content>
-    <form [formGroup]="filtersJourneys">
+    <form [formGroup]="filtersJourneysForm">
       <div fxLayout="row" fxLayoutAlign="space-around">
-        <mat-form-field appearance="fill">
-          <mat-label>Desde</mat-label>
-          <input matInput readonly formControlName="origin" />
-          <mat-icon matSuffix>flight_takeoff</mat-icon>
-        </mat-form-field>
+        <div fxLayout="column" fxLayoutGap="15px">
+          <mat-form-field appearance="fill">
+            <mat-label>Desde</mat-label>
+            <input matInput readonly formControlName="origin" />
+            <mat-icon matSuffix>flight_takeoff</mat-icon>
+          </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Hacia</mat-label>
-          <input matInput readonly formControlName="destination" />
-          <mat-icon matSuffix>flight_land</mat-icon>
-        </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Hacia</mat-label>
+            <input matInput readonly formControlName="destination" />
+            <mat-icon matSuffix>flight_land</mat-icon>
+          </mat-form-field>
+        </div>
 
-        <app-custom-calendar
-          label="Salida"
-          controlName="departureDate"
-          [parentForm]="filtersJourneys"
-          [readonly]="true"
-        ></app-custom-calendar>
+        <div fxLayout="column" fxLayoutGap="15px">
+          <mat-form-field appearance="fill">
+            <mat-label>Desde</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              readonly
+              formControlName="departureDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
 
-        <app-custom-calendar
-          *ngIf="filters?.isReturn"
-          label="Vuelta"
-          controlName="returnDate"
-          [parentForm]="filtersJourneys"
-          [readonly]="true"
-        ></app-custom-calendar>
+          <mat-form-field appearance="fill">
+            <mat-label>Hasta</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              readonly
+              formControlName="returnDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
 
         <mat-form-field appearance="fill">
           <mat-label>Pasajeros</mat-label>

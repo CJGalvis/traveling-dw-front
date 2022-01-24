@@ -40,12 +40,8 @@ export class ReservationFlightComponent implements OnInit {
       passengers: this.reservationForm.get("passengers").value,
     };
 
-    this.store.dispatch(
-      journeysActions.setFilters({ filters: { ...queryParams } })
-    );
-    
     this.router.navigate([
-      `journeys/results`,
+      `/journeys/results/${queryParams.origin}/${queryParams.destination}/${queryParams.departureDate}/${queryParams.returnDate}/${queryParams.isReturn}/${queryParams.passengers}`,
     ]);
   }
 

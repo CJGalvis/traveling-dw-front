@@ -14,6 +14,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatSelectModule } from "@angular/material/select";
 
 const components = [
   MatToolbarModule,
@@ -29,6 +30,7 @@ const components = [
   MatMenuModule,
   MatDialogModule,
   MatTooltipModule,
+  MatSelectModule,
 ];
 
 @NgModule({

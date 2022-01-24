@@ -1,16 +1,24 @@
 import { createReducer, on } from "@ngrx/store";
 import { FilterJourneys } from "../models/FilterJourneys";
 import { JourneysItems } from "../models/JourneysItems";
-import { setFilters, clearFilters, setJourneysItems } from "./journeys.actions";
+import {
+  setFilters,
+  clearFilters,
+  setJourneysItems,
+  setJourneysSelected,
+  enabledPay
+} from "./journeys.actions";
 
 export interface State {
   filters: FilterJourneys;
   journeysItems: Array<JourneysItems>;
+  enablePay: boolean;
 }
 
 export const initialState: State = {
   filters: null,
   journeysItems: [],
+  enablePay: false
 };
 
 const _journeysReducer = createReducer(
@@ -24,8 +32,15 @@ const _journeysReducer = createReducer(
 
   on(setJourneysItems, (state, { journeysItems }) => ({
     ...state,
-    journeysItems: { ...journeysItems },
-  }))
+    journeysItems: [...journeysItems],
+  })),
+
+  on(setJourneysSelected, (state, { journeysSelected }) => ({
+    ...state,
+    journeysSelected: [...journeysSelected],
+  })),
+
+  on(enabledPay, (state) => ({ ...state, enablePay: true })),
 );
 
 export function journeysReducer(state, action) {
