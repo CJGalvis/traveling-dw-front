@@ -2,7 +2,7 @@
   <mat-toolbar color="primary">
     <span>My Application</span>
   </mat-toolbar>
-  
+
   <div fxLayout="row" fxLayoutAlign="center center">
     <mat-card fxFlex="30" class="mat-elevation-z4">
       <mat-card-header>
@@ -10,22 +10,34 @@
       </mat-card-header>
 
       <mat-card-content>
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
           <div fxLayout="column" fxLayoutGap="15px">
             <mat-form-field appearance="fill">
               <mat-label>Email</mat-label>
-              <input matInput />
+              <input matInput formControlName="email" />
               <mat-icon matSuffix>alternate_email</mat-icon>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
               <mat-label>Password</mat-label>
-              <input matInput />
+              <input matInput type="password" formControlName="password" />
               <mat-icon matSuffix>security</mat-icon>
             </mat-form-field>
 
-            <button mat-raised-button color="primary">Continuar</button>
-            <small fxLayoutAlign="center">¿Olvidó su contraseña?</small>
+            <mat-label
+              class="color-warn"
+              *ngIf="showError"
+              fxLayoutAlign="center"
+            >
+              {{ messageError }}
+            </mat-label>
+
+            <button mat-raised-button color="primary" type="submit">
+              Continuar
+            </button>
+            <span fxLayoutAlign="center">
+              <a routerLink="/auth/register"> Registrarse Aquí</a>
+            </span>
             <span fxLayoutAlign="center">Powered by Digital Ware</span>
           </div>
         </form>

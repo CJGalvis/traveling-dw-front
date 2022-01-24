@@ -10,37 +10,65 @@
       </mat-card-header>
 
       <mat-card-content>
-        <form [formGroup]="registerForm">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
           <div fxLayout="column" fxLayoutGap="15px">
             <div fxLayout="row" fxLayoutGap="15px">
               <mat-form-field appearance="fill">
                 <mat-label>Nombres</mat-label>
-                <input matInput />
+                <input matInput formControlName="name" />
                 <mat-icon matSuffix>short_text</mat-icon>
               </mat-form-field>
 
               <mat-form-field appearance="fill">
                 <mat-label>Apellidos</mat-label>
-                <input matInput />
+                <input matInput formControlName="lastname" />
                 <mat-icon matSuffix>short_text</mat-icon>
               </mat-form-field>
             </div>
+
+            <div fxLayout="row" fxLayoutGap="15px">
+              <mat-form-field appearance="fill" fxFlex>
+                <mat-label>Tipo de identificación</mat-label>
+                <mat-select formControlName="identificationType">
+                  <mat-option value="CC">Cédula</mat-option>
+                  <mat-option value="TI">Tarjeta de identidad</mat-option>
+                  <mat-option value="CE">Cédula extragera</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Número de identificación</mat-label>
+                <input matInput formControlName="identificationNumber" />
+                <mat-icon matSuffix>short_text</mat-icon>
+              </mat-form-field>
+            </div>
+
             <div fxLayout="row" fxLayoutGap="15px">
               <mat-form-field appearance="fill">
                 <mat-label>Email</mat-label>
-                <input matInput />
+                <input matInput formControlName="email" />
                 <mat-icon matSuffix>alternate_email</mat-icon>
               </mat-form-field>
 
               <mat-form-field appearance="fill">
                 <mat-label>Password</mat-label>
-                <input matInput />
+                <input matInput type="password" formControlName="password" />
                 <mat-icon matSuffix>security</mat-icon>
               </mat-form-field>
+
+              <mat-label
+                class="color-warn"
+                *ngIf="showError"
+                fxLayoutAlign="center"
+              >
+                {{ messageError }}
+              </mat-label>
             </div>
 
             <button mat-raised-button color="primary">Continuar</button>
-            <small fxLayoutAlign="center">¿Olvidó su contraseña?</small>
+            <span fxLayoutAlign="center">
+              <a routerLink="/auth/login"> Iniciar sessión</a>
+            </span>
             <span fxLayoutAlign="center">Powered by Digital Ware</span>
           </div>
         </form>
