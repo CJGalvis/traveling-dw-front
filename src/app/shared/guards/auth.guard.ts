@@ -11,6 +11,7 @@ import { Observable } from "rxjs";
 import { AppState } from "src/app/core/store/app.reducer";
 import { AuthService } from "src/app/modules/auth/services/auth.service";
 import * as sharedActions from "src/app/shared/store/shared.actions";
+import Swal from "sweetalert2";
 
 @Injectable({
   providedIn: "root",
@@ -34,6 +35,12 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.store.dispatch(sharedActions.setNextUrl({ url: state.url }));
+      Swal.fire({
+        icon: "info",
+        title: "Debe iniciar sesion para crear una reserva",
+        showConfirmButton: false,
+        timer: 3000,
+      });
       this.router.navigate(["/auth/login"]);
       return false;
     }

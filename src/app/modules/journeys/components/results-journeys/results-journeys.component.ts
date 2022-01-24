@@ -34,7 +34,7 @@ export class ResultsJourneysComponent implements OnInit, OnDestroy {
 
   getJourneyForFilter(params: FilterJourneys) {
     this.filterSelected = { ...params };
-    this.filterSelected.isReturn = !!!this.filterSelected.isReturn;
+    this.filterSelected.isReturn = this.filterSelected.isReturn as boolean;
     console.log(this.filterSelected.isReturn);
     this.store.dispatch(journeysActions.setFilters({ filters: { ...params } }));
     this.journeysService.getJourneys(params).subscribe((response: any) => {

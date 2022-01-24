@@ -7,6 +7,7 @@ import { AppState } from "src/app/core/store/app.reducer";
 import { JourneysItems } from "../../models/JourneysItems";
 import { JourneysService } from "../../services/journeys.service";
 import * as journeysActions from "../../store/journeys.actions";
+import Swal from 'sweetalert2'
 
 @Component({
   selector: "app-create-reservation",
@@ -69,6 +70,12 @@ export class CreateReservationComponent implements OnInit, OnDestroy {
 
     this.journeysService.createReservation(reservation).subscribe(
       (response: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Reserva guardada con éxito',
+          showConfirmButton: false,
+          timer: 3000
+        })
         this.store.dispatch(journeysActions.clearFilters());
         this.store.dispatch(journeysActions.clearJourneysItems());
         this.store.dispatch(journeysActions.clearJourneysSelected());
